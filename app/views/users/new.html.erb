@@ -1,0 +1,37 @@
+<% if @user.errors.any? %>
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel">
+      <div id="class_explanation">
+        <p><%= @user.errors.count %>件のエラーがあります</p>
+        <ul>
+          <% @user.errors.full_messages.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div><% end %>
+
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= f.label :"名前" %>
+        <%= f.text_field :name %>
+        
+        <%= f.label :"メールアドレス" %>
+        <%= f.email_field :email %>
+        
+        <%= f.label :"パスワード" %>
+        <%= f.password_field :password %>
+        
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+        
+        <%= f.submit "登録する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

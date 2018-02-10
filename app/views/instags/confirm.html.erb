@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel">
+      <h3>以下の内容で登録しますか</h3>
+      
+      <%= form_with(model: @instag, url: instags_path, local: true) do |f| %>
+        <!--new.html.erbで入力された値をいじられないで、かつcreateへ送る-->
+        <%= f.hidden_field :content %>
+        <%= hidden_field_tag :"cache[image]", @instag.image.cache_name %>
+        
+        <p>写真...<%= image_tag @instag.image.url %></p>
+        <p>一言...<%= @instag.content %></p>
+
+        <%= f.submit "登録するぜ" %>
+      <% end %>
+      
+      <!--
+      new.html.erbへ戻る場合、入力がリセットされないようにform_withを使って、
+      newへパラメを送る
+      -->
+      <%= form_with(model: @instag, local: true, url: new_instag_path, method: "get") do |f| %>
+        <%= f.hidden_field :content %>
+        
+        <%= f.submit "やり直す", name: "back" %>
+      <% end %>
+    </div>
+  </div>
+</div>

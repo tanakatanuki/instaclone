@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel">
+      <%= form_with(scope: :session, url:sessions_path) do |f| %>
+        <%= f.label :"メールアドレス" %>
+        <%= f.email_field :email %>
+        
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        
+        <%= f.submit "ログイン" %>
+      <% end %>
+    </div>
+  </div>
+</div>

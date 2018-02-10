@@ -1,0 +1,80 @@
+
+	
+	<!--<div id="header" class="content-block">-->
+	<!--	<section class="center">-->
+	<!--		<div class="slogan">-->
+	<!--			InstagramClone-->
+	<!--		</div>-->
+	<!--		<div class="secondary-slogan">-->
+	<!--			Phase3大課題-->
+	<!--		</div>-->
+	<!--	</section>-->
+	<!--</div><!-- header -->
+<div id="wrapper">
+
+	<div id="header" class="content-block">
+		<section class="center">
+			<div class="top_image">
+		    <!--本番環境では画像が表示されなかった-->
+		    <!--<img src="/assets/top_run.jpg">-->
+		    <%= image_tag("header-bg.jpg") %>
+		    <p>Instagram Clone</p>
+				<div class="slogan">
+					Phase3大課題
+				</div>
+				<div class="secondary-slogan">
+				ありきたりな写真を投稿しよう<BR>
+				あなただけにしか表現しえない鋭い一言を添えよう
+				</div>
+			</div>
+		</section>
+	</div><!-- header -->
+
+		<div class="content-block" id="blog">
+		<div class="container blog-sec">
+			<header class="block-heading cleafix">
+				<!--<a href="#" class="btn btn-o btn-lg pull-right">View All</a>-->
+				<div class="title-page">
+					<p class="main-header">投稿一覧</p>
+				    <!--<p class="sub-header">最近投稿された投稿</p>-->
+				</div>
+			</header>
+			
+			<div class="content-block" id="blog">
+			<div class="container blog-sec">
+			<section class="block-body">
+				<div class="row">
+				  <% @instags.each do |insta| %>
+					<div class="col-sm-3 col-md-2 blog-post">
+						<!--<img src="/images/bike_water1-1000x600.jpg">-->
+						<div class="blog-post2">
+							<%= link_to instag_path(insta.id) do %>
+								<%= image_tag insta.image.url if insta.image? %>
+								<p><%= insta.user.name %>さんの一撃:
+								<%= insta.content.truncate(10) %></p>
+							<% end %>
+						</div>
+						
+						<!--
+						日付も、編集削除リンクも不要
+						-->
+						<!--<div class="date"><%= insta.created_at.to_s(:date) %></div>-->
+						<!--<div>-->
+						<!--  <%= link_to "編集", edit_instag_path(insta.id) %>-->
+						<!--  <%= link_to "削除", instag_path(insta.id), method: :delete, data: {confirm:"消していい?"} %>-->
+						<!--</div>-->
+					</div>
+					<% end %>
+				</div>
+			</section>
+			</div>
+			</div>
+			
+		</div>
+	</div><!-- #blog -->
+	
+</div><!--/#wrapper-->
+
+
+
+

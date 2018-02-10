@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="noIE">
+  <head>
+    <title>Instaclone</title>
+    <%= csrf_meta_tags %>
+
+	<!-- meta -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
+		
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<header class="top-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-xs-5 col-sm-4 header-logo">
+					<br>
+					<%= link_to instags_path do %>
+					  <h1 class="logo">Instagram <span class="logo-head">Clone</span></h1>
+					<% end %>
+				</div>
+	
+				<div class="col-md-8 col-md-offset-1 col-xs-7">
+					<nav class="navbar navbar-default showsplus">
+					  	<div class="container-fluid nav-bar">
+					    <!-- Brand and toggle get grouped for better mobile display -->
+						    <div class="navbar-header">
+						      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							        <span class="sr-only">Toggle navigation</span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+						      	</button>
+						    </div>
+	
+					    	<!-- Collect the nav links, forms, and other content for toggling -->
+						    <div class="collapse navbar-collapse navbar-def" id="bs-example-navbar-collapse-1">
+					      	<ul class="nav navbar-nav navbar-right">
+					        	<li>
+					        		<%= link_to instags_path do %>
+												<i class="fa fa-home"></i> 投稿一覧
+											<% end %>
+										</li>
+
+							    	<% if logged_in? %>
+											<li>
+												<%= link_to new_instag_path(current_user.id) do %>
+												  <i class="fa fa-bookmark"></i> 新規投稿
+												<% end %>
+											</li>
+											<li>
+												<%= link_to user_path(current_user.id) do %>
+												  <i class="fa fa-bookmark"></i> ユーザー情報
+												<% end %>
+											</li>
+											<li>
+												<%= link_to session_path(current_user.id), method: :delete do %>
+													<i class="fa fa-tasks"></i> ログアウト
+												<% end %>
+											</li>
+										<% else %>
+											<li>
+												<%= link_to new_user_path do %>
+												  <i class="fa fa-bookmark"></i> 新規登録
+												<% end %>
+											</li>
+											<li>
+												<%= link_to new_session_path do %>
+												  <i class="fa fa-bookmark"></i> ログイン
+												<% end %>
+											</li>
+										<% end %>
+										
+							      </ul>
+							    </div><!-- /navbar-collapse -->
+						  	</div><!-- / .container-fluid -->
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<!--
+		フラッシュメッセージの表示。
+		全体をdivで囲い、メッセージをダミーの余白で調整
+		-->
+		<div class="container">
+			<% flash.each do |key, value| %>
+			  <div class="dummy_margin_flashmsg">
+				<%= content_tag(:div, value, class:"alert alert-#{key}") %>
+			  </div>
+			<% end %>
+		</div>
+
+    <%= yield %>
+ 
+  	<div class="content-block footer-bottom" id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6">&copy; Copyright TanakaMotoki 2018</div>
+					<div class="col-xs-6 text-right">@DiveIntoCode</div>
+				</div>
+			</div>
+		</div><!-- #footer -->
+
+		<!--スクロールするとナビゲーションの背景色が変化-->
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+		  	$(window).scroll(function() {
+					if ($(window).scrollTop() > 100 ){
+				 		$('.top-header').addClass('shows');
+		  		} else {
+			   	 	$('.top-header').removeClass('shows');
+			 		};   	
+				});
+		  });
+		</script>
+  </body>
+</html>

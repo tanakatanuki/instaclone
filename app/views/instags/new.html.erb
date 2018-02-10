@@ -1,0 +1,40 @@
+
+
+<!--<%= form_with(model: @instag, local: true, url: choose_new_or_edit) do |f| %>-->
+
+<!--  エラーメッセージの表示-->
+<!--  -->
+<!--  <% if @instag.errors.any? %>-->
+<!--    <div>-->
+<!--      <h2><%= @instag.errors.count %>件のエラーがあります</h2>-->
+      
+<!--      <ul>-->
+<!--        <% @instag.errors.full_messages.each do |msg| %>-->
+<!--          <li><%= msg %></li>-->
+<!--        <% end %>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  <% end %>-->
+
+<!--  本体-->
+<!--  -->
+<!--  <div>-->
+<!--    <%= f.label :"写真を説明する気の利いた言葉" %>-->
+<!--    <%= f.text_field :content %>-->
+<!--  </div>-->
+  
+<!--  <%= f.submit "投稿する" %>-->
+
+<!--<% end %>-->
+  
+<!--<%= link_to "投稿一覧ページに戻る", instags_path %>-->
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel">
+      <h2>以下のフォームから投稿してね</h2>
+
+      <%= render "form" %>
+
+    </div>
+  </div>
+</div>

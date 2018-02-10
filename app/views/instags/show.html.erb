@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row dummy_margin">
+    <div class="col-sm-12 col-md-6 blog-panel" id="blog">
+      <h1>詳細画面</h1>
+      
+      <div class="blog-post_content">
+        <div><%= image_tag @instag.image %></div>
+        <div><%= @instag.content %></div>
+      </div>
+      <div>
+				<div class="date"><%= @instag.created_at %></div>
+      </div>
+      <!--
+      投稿ユーザーだけが、編集・削除できるように
+      -->
+      <% if logged_in? && @instag.user_id == current_user.id %>
+      <div>
+        <!--<td><%= link_to "編集", edit_instag_path(@instag.id), class: "btn btn-info" %></td>-->
+        <!--<td><%= link_to "削除", instag_path(@instag.id), method: :delete ,data: {confirm: "消していい?"}, class:"btn btn-danger" %></td>-->
+        <%= link_to "編集", edit_instag_path(@instag.id) %>
+        <%= link_to "削除", instag_path(@instag.id), method: :delete ,data: {confirm: "消していい?"}%>
+      </div>
+      <% end %>
+      
+      <!--自分が投稿した写真もお気に入りできる-->
+      <% if logged_in? %>
+      <div>
+        <% if @favorite.present? %>
+          <%= link_to "お気に入りを解除する", instag_favorite_path(instag_id: @instag.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "お気に入りにする", instag_favorites_path(instag_id: @instag.id), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <% end %>
+      
+      <%= link_to "投稿一覧ページに戻る", instags_path %>
+    </div>
+  </div>
+</div>
