@@ -8,7 +8,9 @@ Rails.application.configure do
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
-  config.eager_load = true
+  # 画像アップロード時、本番環境で500エラーが出たため、falseにした
+  # config.eager_load = true
+  config.eager_load = false
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -88,4 +90,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # use sendgrid
+  config.action_mailer.default_url_options = { host: "https:///morning-tor-19042.herokuapp.com/" }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings =
+  {
+   user_name: ENV['SENDGRID_USERNAME'],
+   password: ENV['SENDGRID_PASSWORD'],
+   domain: "heroku.com",
+   address: "smtp.SendGrid.net",
+   port: 587,
+   authentication: :plain,
+   enable_starttls_auto: true
+  }
 end
