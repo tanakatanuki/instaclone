@@ -1,5 +1,6 @@
 class Instag < ApplicationRecord
   validates :content, presence: true, length: {in: 1..140}
+  validates :image, presence: true
   
   # Userモデルとのアソシエーション。多側
   belongs_to :user

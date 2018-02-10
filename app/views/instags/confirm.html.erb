@@ -8,7 +8,7 @@
         <%= f.hidden_field :content %>
         <%= hidden_field_tag :"cache[image]", @instag.image.cache_name %>
         
-        <p>写真...<%= image_tag @instag.image.url %></p>
+        <p>写真...<%= image_tag @instag.image.url  if @instag.image? %></p>
         <p>一言...<%= @instag.content %></p>
 
         <%= f.submit "登録するぜ" %>
